@@ -14,6 +14,7 @@ public class ClawMovements : MonoBehaviour {
 
     public float speed;
     public float clawSpeed;
+    public float hookSpeed;
     Rigidbody rigidBody;
 
     public Transform HookHeight;
@@ -61,13 +62,13 @@ public class ClawMovements : MonoBehaviour {
             }
 
             if (transform.position.x >= leftLimit.transform.position.x + 0.5f) {
-                transform.Translate(speed * -1 * Time.deltaTime, 0, 0);
+                // transform.Translate(speed * -1 * Time.deltaTime, 0, 0);
             } else {
                 // ArrivedAtBasket[1] = true;
             }
 
             if (transform.position.z >= frontLimit.transform.position.z + 0.5f) {
-                transform.Translate(0, 0, speed * -1 * Time.deltaTime);
+                // transform.Translate(0, 0, speed * -1 * Time.deltaTime);
             } else {
                 // ArrivedAtBasket[2] = true;
             }
@@ -134,7 +135,9 @@ public class ClawMovements : MonoBehaviour {
             // Lower the hook
             if (HookHeight.position.y > minHeight) {
                 if (Input.GetKey(KeyCode.Space)) {
-                    transform.Translate(0, clawSpeed * -1 * Time.deltaTime, 0);
+                    transform.Translate(0, hookSpeed * -1 * Time.deltaTime, 0);
+                    print("rotate");
+                    GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 50.0f, 0.0f, Space.Self);
                 }
             } else {
                 StartCoroutine(CloseClaw(0.5f));
