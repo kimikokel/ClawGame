@@ -61,21 +61,21 @@ public class ClawMovements : MonoBehaviour {
                 // ArrivedAtBasket[0] = true;
             }
 
-            if (transform.position.x >= leftLimit.transform.position.x + 0.5f) {
-                // transform.Translate(speed * -1 * Time.deltaTime, 0, 0);
-            } else {
-                // ArrivedAtBasket[1] = true;
-            }
+            // if (transform.position.x >= leftLimit.transform.position.x + 0.5f) {
+            //     // transform.Translate(speed * -1 * Time.deltaTime, 0, 0);
+            // } else {
+            //     // ArrivedAtBasket[1] = true;
+            // }
 
-            if (transform.position.z >= frontLimit.transform.position.z + 0.5f) {
-                // transform.Translate(0, 0, speed * -1 * Time.deltaTime);
-            } else {
-                // ArrivedAtBasket[2] = true;
-            }
+            // if (transform.position.z >= frontLimit.transform.position.z + 0.5f) {
+            //     // transform.Translate(0, 0, speed * -1 * Time.deltaTime);
+            // } else {
+            //     // ArrivedAtBasket[2] = true;
+            // }
 
             // Check if the hook is inside the basket
             if (true) {
-                Debug.Log("Inside the basket");
+                // Debug.Log("Inside the basket");
                 insideBasket = true;
 
                 // Start a coroutine to lower the hook and release the prize
@@ -88,7 +88,7 @@ public class ClawMovements : MonoBehaviour {
 
         if (lowerHookAndReleasePrize) {
             if (HookHeight.position.y > minHeight) {
-                Debug.Log("Lowering");
+                // Debug.Log("Lowering");
                 transform.Translate(0, clawSpeed * -1 * Time.deltaTime, 0);
             } else {
                 StartCoroutine(OpenClawInBasket(0.5f));
@@ -136,8 +136,8 @@ public class ClawMovements : MonoBehaviour {
             if (HookHeight.position.y > minHeight) {
                 if (Input.GetKey(KeyCode.Space)) {
                     transform.Translate(0, hookSpeed * -1 * Time.deltaTime, 0);
-                    print("rotate");
-                    GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 50.0f, 0.0f, Space.Self);
+                    // print("rotate");
+                    // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, -50.0f);
                 }
             } else {
                 StartCoroutine(CloseClaw(0.5f));
@@ -151,7 +151,7 @@ public class ClawMovements : MonoBehaviour {
         yield return new WaitForSeconds(waitTime);
         CloseClaw();
         yield return new WaitForSeconds(waitTime);
-        Debug.Log("Raising hook");
+        // Debug.Log("Raising hook");
         ReleasePrize = true;
     }
 
@@ -160,7 +160,7 @@ public class ClawMovements : MonoBehaviour {
         yield return new WaitForSeconds(waitTime);
         lowerHookAndReleasePrize = true;
         ReleasePrize = false;
-        Debug.Log("Lowering hook");
+        // Debug.Log("Lowering hook");
         yield return new WaitForSeconds(waitTime);
     }
 
@@ -173,7 +173,7 @@ public class ClawMovements : MonoBehaviour {
     }
 
     public void OpenClaw() {
-        Debug.Log("Opening Hook");
+        // Debug.Log("Opening Hook");
         // clawAnimator.SetBool("Open", true);
         // clawAnimator.SetBool("Close", false);
     }
@@ -182,6 +182,7 @@ public class ClawMovements : MonoBehaviour {
         Debug.Log("Closing Hook");
         // clawAnimator.SetBool("Open", false);
         // clawAnimator.SetBool("Close", true);
+        clawAnimator.Play("Close");
     }
 }
 
