@@ -3,18 +3,11 @@ using System.Collections;
 
 public class ClawMovements : MonoBehaviour {
 
-    public float maxHeight;
-    public float minHeight;
-    public float tubeSeparationCorrection;
-
-    public GameObject Tubes;
-    public GameObject Motor;
+    public int maxHeight;
+    public int minHeight;
     public GameObject Hook;
     public Animator clawAnimator;
-
-    public float speed;
     public float clawSpeed;
-    public float hookSpeed;
     Rigidbody rigidBody;
 
     public Transform HookHeight;
@@ -24,167 +17,262 @@ public class ClawMovements : MonoBehaviour {
     public Transform rightLimit;
     public Transform frontLimit;
     public Transform backLimit;
-
     public bool CanControl;
-    bool ReleasePrize;
-
-    public bool[] ArrivedAtBasket;
-
-    bool insideBasket;
-
-    bool lowerHookAndReleasePrize;
-
-    bool raiseHookOutOfBasket;
+    bool onSpace;
 
     // Use this for initialization
     void Start () {
-        // clawAnimator = Hook.gameObject.GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         CanControl = true;
-        ReleasePrize = false;
+        onSpace = false;
     }
 
     // Update is called once per frame
     void Update() {
-    }
-
-    void FixedUpdate () {
-        // Attach the motor's X/Z movement to the hook
-        Motor.transform.position = new Vector3(transform.position.x, Motor.transform.position.y, transform.position.z);
-        Tubes.transform.position = new Vector3(Tubes.transform.position.x, Tubes.transform.position.y, Motor.transform.position.z + tubeSeparationCorrection);
-
-        // Release the prize
-        if (ReleasePrize) {
-            if (HookHeight.position.y <= maxHeight) {
-                transform.Translate(0, clawSpeed * Time.deltaTime, 0);
-            } else {
-                // ArrivedAtBasket[0] = true;
-            }
-
-            // if (transform.position.x >= leftLimit.transform.position.x + 0.5f) {
-            //     // transform.Translate(speed * -1 * Time.deltaTime, 0, 0);
-            // } else {
-            //     // ArrivedAtBasket[1] = true;
-            // }
-
-            // if (transform.position.z >= frontLimit.transform.position.z + 0.5f) {
-            //     // transform.Translate(0, 0, speed * -1 * Time.deltaTime);
-            // } else {
-            //     // ArrivedAtBasket[2] = true;
-            // }
-
-            // Check if the hook is inside the basket
-            if (true) {
-                // Debug.Log("Inside the basket");
-                insideBasket = true;
-
-                // Start a coroutine to lower the hook and release the prize
-                if (insideBasket) {
-                    StartCoroutine(ReleasePrizeInBasket(1.5f));
-                    insideBasket = false;
-                }
-            }
-        }
-
-        if (lowerHookAndReleasePrize) {
-            if (HookHeight.position.y > minHeight) {
-                // Debug.Log("Lowering");
-                transform.Translate(0, clawSpeed * -1 * Time.deltaTime, 0);
-            } else {
-                StartCoroutine(OpenClawInBasket(0.5f));
-                lowerHookAndReleasePrize = false;
-            }
-        }
-
-        if (raiseHookOutOfBasket) {
-            if (HookHeight.position.y <= maxHeight) {
-                transform.Translate(0, clawSpeed * Time.deltaTime, 0);
-            } else {
-                CanControl = true;
-                raiseHookOutOfBasket = false;
-            }
-        }
-
         if (CanControl) {
             // Lateral movements
             if (transform.position.x > leftLimit.transform.position.x) {
                 if (Input.GetKey(KeyCode.A)) {
-                    transform.Translate(speed * -1 * Time.deltaTime, 0, 0);
+                    // transform.Translate(clawSpeed * -1 * Time.deltaTime, 0, 0);
+                    // transform.position = new Vector3((clawSpeed * -5 * Time.deltaTime),transform.position.y,transform.position.z);
                 }
             }
 
             if (transform.position.x < rightLimit.transform.position.x) {
                 if (Input.GetKey(KeyCode.D)) {
-                    transform.Translate(speed * Time.deltaTime, 0, 0);
+                    // transform.Translate(clawSpeed * Time.deltaTime, 0, 0);
+                    // transform.position = new Vector3((clawSpeed * Time.deltaTime),transform.position.y,transform.position.z);    
                 }
             }
 
             // Forward movements
             if (transform.position.z < backLimit.transform.position.z) {
                 if (Input.GetKey(KeyCode.W)) {
-                    transform.Translate(0, 0, speed * Time.deltaTime);
+                    // transform.Translate(0, 0, clawSpeed * Time.deltaTime);
+                    // transform.position = new Vector3(transform.position.x,transform.position.y,(clawSpeed * Time.deltaTime)); 
                 }
             }
 
             if (transform.position.z > frontLimit.transform.position.z) {
                 if (Input.GetKey(KeyCode.S)) {
-                    transform.Translate(0, 0, speed * -1 * Time.deltaTime);
+                    // transform.Translate(0, 0, clawSpeed * -1 * Time.deltaTime);
+                    // transform.position = new Vector3(transform.position.x,transform.position.y,(clawSpeed * -1 * Time.deltaTime)); 
                 }
             }
 
-            // Lower the hook
-            if (HookHeight.position.y > minHeight) {
-                if (Input.GetKey(KeyCode.Space)) {
-                    transform.Translate(0, hookSpeed * -1 * Time.deltaTime, 0);
-                    // print("rotate");
-                    // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, -50.0f);
-                }
-            } else {
-                StartCoroutine(CloseClaw(0.5f));
+            // if (Input.GetKey(KeyCode.Space)) {
+            //     // StartCoroutine(returnHook());
+            //     if (HookHeight.position.y > minHeight) {
+            //         transform.Translate(0, clawSpeed * -1 * Time.deltaTime, 0);
+            //         CanControl = false;
+            //     }
+            // }
+                
+            // if (HookHeight.position.y <= maxHeight && !CanControl) {
+            //     transform.Translate(0, clawSpeed * Time.deltaTime, 0);
+            //     // CanControl = true;
+            // }
+
+            if (Input.GetKey(KeyCode.Space)) {
+                onSpace = true;
                 CanControl = false;
+                print("space "+ (int)HookHeight.position.y);
             }
         }
-    }
 
-    // Coroutine to collect the prize
-    IEnumerator CloseClaw(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        CloseClaw();
-        yield return new WaitForSeconds(waitTime);
-        // Debug.Log("Raising hook");
-        ReleasePrize = true;
-    }
+            if ((int)HookHeight.position.y >= minHeight && onSpace) {
+                transform.Translate(0, (clawSpeed * -1f * Time.deltaTime), 0);
+                print("down "+ (int)HookHeight.position.y);
+            }         
 
-    // Coroutine to release the prize
-    IEnumerator ReleasePrizeInBasket(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        lowerHookAndReleasePrize = true;
-        ReleasePrize = false;
-        // Debug.Log("Lowering hook");
-        yield return new WaitForSeconds(waitTime);
-    }
+            ///////////////////////
 
-    // Coroutine to release the prize
-    IEnumerator OpenClawInBasket(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        OpenClaw();
-        yield return new WaitForSeconds(waitTime);
-        raiseHookOutOfBasket = true;
-    }
+            if ((int)HookHeight.position.y == minHeight) {
+                // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, 20.0f);
+                print("==max");
+                onSpace = false;
+                clawAnimator.Play("close");
+                StartCoroutine(sleep(2f));
+            }
+                
+            // if (HookHeight.position.y <= maxHeight && !onSpace && HookHeight.position.y > minHeight) {
+            //     // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, 20.0f);
+            //     StartCoroutine(sleep(0.5f));
+            //     // print("up");
+            //     // transform.Translate(0, (clawSpeed * Time.deltaTime), 0);
+            //     CanControl = true;
+            //     // clawAnimator.Play("normal");
+            // }
 
-    public void OpenClaw() {
-        // Debug.Log("Opening Hook");
-        // clawAnimator.SetBool("Open", true);
-        // clawAnimator.SetBool("Close", false);
+            IEnumerator sleep(float secs) {
+                yield return new WaitForSeconds(secs); 
+                if (HookHeight.position.y <= maxHeight && !onSpace && HookHeight.position.y > minHeight) {
+                    // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, 20.0f);
+                    // StartCoroutine(sleep(0.5f));
+                    print("up");
+                    transform.Translate(0, (clawSpeed * Time.deltaTime), 0);
+                    CanControl = true;
+                    // clawAnimator.Play("normal");
+                }
+            }
     }
+        
 
-    public void CloseClaw() {
-        Debug.Log("Closing Hook");
-        // clawAnimator.SetBool("Open", false);
-        // clawAnimator.SetBool("Close", true);
-        clawAnimator.Play("Close");
-    }
+        //     Lower the hook
+        //     if (HookHeight.position.y > minHeight) {
+        //         if (Input.GetKey(KeyCode.Space)) {
+        //             transform.Translate(0, clawSpeed * -1 * Time.deltaTime, 0);
+        //             // print("rotate");
+        //             // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, -50.0f);
+        //         }
+        //     } else {
+        //         CanControl = false;
+        //     }
+        // }
+
+    
+
+    // IEnumerator returnHook() {
+    //     yield return new WaitForSeconds(0.2f);  
+    //     print("==max");
+    //     onSpace = false;
+    //     clawAnimator.Play("close");
+    //     // yield return new WaitForSeconds(0.2f);    
+
+    //     if (HookHeight.position.y <= maxHeight && !onSpace && HookHeight.position.y > minHeight) {
+    //         // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, 20.0f);
+    //         print("up");
+    //         transform.Translate(0, (clawSpeed * Time.deltaTime), 0);
+    //         CanControl = true;
+    //         // clawAnimator.Play("normal");
+    //     }
+    // }
+
 }
+//     void FixedUpdate () {
+//         // Attach the motor's X/Z movement to the hook
+//         Motor.transform.position = new Vector3(transform.position.x, Motor.transform.position.y, transform.position.z);
+//         Tubes.transform.position = new Vector3(Tubes.transform.position.x, Tubes.transform.position.y, Motor.transform.position.z + tubeSeparationCorrection);
+
+//         // Release the prize
+//         if (ReleasePrize) {
+//             if (HookHeight.position.y <= maxHeight) {
+//                 transform.Translate(0, clawSpeed * Time.deltaTime, 0);
+//             }
+
+//             if (true) {
+//                 // Debug.Log("Inside the basket");
+//                 insideBasket = true;
+
+//                 // Start a coroutine to lower the hook and release the prize
+//                 if (insideBasket) {
+//                     StartCoroutine(ReleasePrizeInBasket(1.5f));
+//                     insideBasket = false;
+//                 }
+//             }
+//         }
+
+//         if (lowerHookAndReleasePrize) {
+//             if (HookHeight.position.y > minHeight) {
+//                 // Debug.Log("Lowering");
+//                 // transform.Translate(0, clawSpeed * -1 * Time.deltaTime, 0);
+//                 StartCoroutine(OpenClawInBasket(0.5f));
+//                 lowerHookAndReleasePrize = false;
+//             } else {
+//                 StartCoroutine(OpenClawInBasket(0.5f));
+//                 lowerHookAndReleasePrize = false;
+//             }
+//         }
+
+//         if (raiseHookOutOfBasket) {
+//             if (HookHeight.position.y <= maxHeight) {
+//                 transform.Translate(0, clawSpeed * Time.deltaTime, 0);
+//             } else {
+//                 CanControl = true;
+//                 raiseHookOutOfBasket = false;
+//             }
+//         }
+
+//         if (CanControl) {
+//             // Lateral movements
+//             if (transform.position.x > leftLimit.transform.position.x) {
+//                 if (Input.GetKey(KeyCode.A)) {
+//                     transform.Translate(speed * -1 * Time.deltaTime, 0, 0);
+//                 }
+//             }
+
+//             if (transform.position.x < rightLimit.transform.position.x) {
+//                 if (Input.GetKey(KeyCode.D)) {
+//                     transform.Translate(speed * Time.deltaTime, 0, 0);
+//                 }
+//             }
+
+//             // Forward movements
+//             if (transform.position.z < backLimit.transform.position.z) {
+//                 if (Input.GetKey(KeyCode.W)) {
+//                     transform.Translate(0, 0, speed * Time.deltaTime);
+//                 }
+//             }
+
+//             if (transform.position.z > frontLimit.transform.position.z) {
+//                 if (Input.GetKey(KeyCode.S)) {
+//                     transform.Translate(0, 0, speed * -1 * Time.deltaTime);
+//                 }
+//             }
+
+//             // Lower the hook
+//             if (HookHeight.position.y > minHeight) {
+//                 if (Input.GetKey(KeyCode.Space)) {
+//                     transform.Translate(0, hookSpeed * -1 * Time.deltaTime, 0);
+//                     // print("rotate");
+//                     // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, -50.0f);
+//                 }
+//             } else {
+//                 StartCoroutine(CloseClaw(0.5f));
+//                 CanControl = false;
+//             }
+//         }
+//     }
+
+//     // Coroutine to collect the prize
+//     IEnumerator CloseClaw(float waitTime) {
+//         yield return new WaitForSeconds(waitTime);
+//         CloseClaw();
+//         yield return new WaitForSeconds(waitTime);
+//         // Debug.Log("Raising hook");
+//         ReleasePrize = true;
+//     }
+
+//     // Coroutine to release the prize
+//     IEnumerator ReleasePrizeInBasket(float waitTime) {
+//         yield return new WaitForSeconds(waitTime);
+//         lowerHookAndReleasePrize = true;
+//         ReleasePrize = false;
+//         // Debug.Log("Lowering hook");
+//         yield return new WaitForSeconds(waitTime);
+//     }
+
+//     // Coroutine to release the prize
+//     IEnumerator OpenClawInBasket(float waitTime) {
+//         yield return new WaitForSeconds(waitTime);
+//         OpenClaw();
+//         yield return new WaitForSeconds(waitTime);
+//         raiseHookOutOfBasket = true;
+//     }
+
+//     public void OpenClaw() {
+//         // Debug.Log("Opening Hook");
+//         // clawAnimator.SetBool("Open", true);
+//         // clawAnimator.SetBool("Close", false);
+//     }
+
+//     public void CloseClaw() {
+//         Debug.Log("Closing Hook");
+//         // clawAnimator.SetBool("Open", false);
+//         // clawAnimator.SetBool("Close", true);
+//         // clawAnimator.Play("Close");
+//     }
+// }
 
 // using UnityEngine;
 // using System.Collections;
