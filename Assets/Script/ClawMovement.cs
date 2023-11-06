@@ -20,11 +20,20 @@ public class ClawMovements : MonoBehaviour {
     public bool CanControl;
     bool onSpace;
 
+    public GameObject[] balls;
+    public Transform clawPosition;
+
+    void Awake(){
+        Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
+    }
+
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         CanControl = true;
         onSpace = false;
+        // Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
+        // clawAnimator.Play("close");
     }
 
     // Update is called once per frame
@@ -91,7 +100,7 @@ public class ClawMovements : MonoBehaviour {
                 // GameObject.FindWithTag("ClawBar").transform.Rotate(0.0f, 0.0f, 20.0f);
                 print("==max");
                 onSpace = false;
-                clawAnimator.Play("close");
+                clawAnimator.Play("open");
                 StartCoroutine(sleep(2f));
             }
                 
@@ -112,7 +121,9 @@ public class ClawMovements : MonoBehaviour {
                     print("up");
                     transform.Translate(0, (clawSpeed * Time.deltaTime), 0);
                     CanControl = true;
-                    // clawAnimator.Play("normal");
+                    // yield return new WaitForSeconds(secs); 
+                    clawAnimator.Play("close");
+                    // Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
                 }
             }
     }
