@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5861409178561632961, guid: fec9786fa832072478212e30d3d95db3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5287731693806042501, guid: fec9786fa832072478212e30d3d95db3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -67,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fec9786fa832072478212e30d3d95db3, type: 3}
       propertyPath: m_Name
       value: green
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fec9786fa832072478212e30d3d95db3, type: 3}
+      propertyPath: m_TagString
+      value: Green
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -81,6 +89,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fec9786fa832072478212e30d3d95db3, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1553664581921905936}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fec9786fa832072478212e30d3d95db3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5372188555019831084}
   m_SourcePrefab: {fileID: 100100000, guid: fec9786fa832072478212e30d3d95db3, type: 3}
 --- !u!1 &4267041711619347315 stripped
 GameObject:
@@ -148,3 +159,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8120250883968446633}
+--- !u!114 &5372188555019831084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267041711619347315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4797cac0fa4bd4409993511ccf90731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newBall:
+  - {fileID: 6765527921007409165, guid: b88cf7fce8d319649b651c6327964ed7, type: 3}
+  - {fileID: 1510732161289074, guid: dbeb405477eddea4db9d05967fa0862a, type: 3}
+  - {fileID: 1842677249106235685, guid: 8c737f45d76d57747a2d86f13fcce6e9, type: 3}
+  - {fileID: 2857784976655459630, guid: 046f5d170a3c09342b4a5b5e18269395, type: 3}
+  - {fileID: 693894469240279569, guid: e37fba87956de9346b3dc062fba79897, type: 3}
+  - {fileID: 6458720563696925065, guid: aa63163d432fe5945b08e00046b0d8ee, type: 3}
+  - {fileID: 4267041711619347315}

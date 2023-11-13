@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lightgreen
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 209e09223f317f84d8e9c26d7fdd4774, type: 3}
+      propertyPath: m_TagString
+      value: Lightgreen
+      objectReference: {fileID: 0}
     - target: {fileID: 4979937543440897592, guid: 209e09223f317f84d8e9c26d7fdd4774, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.02
@@ -117,6 +121,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 209e09223f317f84d8e9c26d7fdd4774, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4561176148953952787}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 209e09223f317f84d8e9c26d7fdd4774, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 670298182768182814}
   m_SourcePrefab: {fileID: 100100000, guid: 209e09223f317f84d8e9c26d7fdd4774, type: 3}
 --- !u!1 &6458720563696925065 stripped
 GameObject:
@@ -184,3 +191,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 7001300260581486033}
+--- !u!114 &670298182768182814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458720563696925065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4797cac0fa4bd4409993511ccf90731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newBall:
+  - {fileID: 6765527921007409165, guid: b88cf7fce8d319649b651c6327964ed7, type: 3}
+  - {fileID: 1510732161289074, guid: dbeb405477eddea4db9d05967fa0862a, type: 3}
+  - {fileID: 1842677249106235685, guid: 8c737f45d76d57747a2d86f13fcce6e9, type: 3}
+  - {fileID: 2857784976655459630, guid: 046f5d170a3c09342b4a5b5e18269395, type: 3}
+  - {fileID: 693894469240279569, guid: e37fba87956de9346b3dc062fba79897, type: 3}
+  - {fileID: 6458720563696925065}
+  - {fileID: 4267041711619347315, guid: 3cf1e13b0eccfcd4b9974940086c49bc, type: 3}

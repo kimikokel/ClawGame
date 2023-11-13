@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pinky
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91a6e6c399d438c4dad88cf1755706f7, type: 3}
+      propertyPath: m_TagString
+      value: Pink
+      objectReference: {fileID: 0}
     - target: {fileID: 8828307087798737873, guid: 91a6e6c399d438c4dad88cf1755706f7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.20449357
@@ -121,6 +125,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91a6e6c399d438c4dad88cf1755706f7, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4219648620562855502}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 91a6e6c399d438c4dad88cf1755706f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2173393861294486880}
   m_SourcePrefab: {fileID: 100100000, guid: 91a6e6c399d438c4dad88cf1755706f7, type: 3}
 --- !u!1 &2857784976655459630 stripped
 GameObject:
@@ -188,3 +195,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 7973712694991165233}
+--- !u!114 &2173393861294486880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857784976655459630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4797cac0fa4bd4409993511ccf90731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newBall:
+  - {fileID: 6765527921007409165, guid: b88cf7fce8d319649b651c6327964ed7, type: 3}
+  - {fileID: 1510732161289074, guid: dbeb405477eddea4db9d05967fa0862a, type: 3}
+  - {fileID: 1842677249106235685, guid: 8c737f45d76d57747a2d86f13fcce6e9, type: 3}
+  - {fileID: 2857784976655459630}
+  - {fileID: 693894469240279569, guid: e37fba87956de9346b3dc062fba79897, type: 3}
+  - {fileID: 6458720563696925065, guid: aa63163d432fe5945b08e00046b0d8ee, type: 3}
+  - {fileID: 4267041711619347315, guid: 3cf1e13b0eccfcd4b9974940086c49bc, type: 3}

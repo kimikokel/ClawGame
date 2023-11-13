@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - ClawBar
+  - Yellow
+  - Lightgreen
+  - Purple
+  - Red
+  - Orange
+  - Green
+  - Pink
+  - Dead
   layers:
   - Default
   - TransparentFX
