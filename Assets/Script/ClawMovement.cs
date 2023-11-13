@@ -93,11 +93,12 @@ public class ClawMovements : MonoBehaviour {
 
             IEnumerator closeClaw() {
                 // yield return new WaitForSeconds(secs); 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.4f);
                 if (HookHeight.position.y <= maxHeight && !onSpace && HookHeight.position.y > minHeight) {
                     // print("up");
                     transform.Translate(0, (clawSpeed * Time.deltaTime), 0);
                     CanControl = true;
+                    yield return new WaitForSeconds(0.1f);
                     clawAnimator.Play("close");
                 }
             }

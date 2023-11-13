@@ -9,7 +9,7 @@ public class Gravity : MonoBehaviour
 
     void Start()
     {
-        customGravity = new Vector3(0,-500,0);
+        customGravity = new Vector3(0, -100, 0);
 
         if (rigidBody == null)
         {

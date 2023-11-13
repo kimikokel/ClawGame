@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Spawn : MonoBehaviour
+public class StartGame : MonoBehaviour
 {
-    public GameObject[] balls;
-    public Transform clawPosition;
-
     // Start is called before the first frame update
     void Start()
     {
-        // Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
+        
+    }
+
+    public void enterMain()
+    {
+        SceneManager.LoadScene("Main");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }

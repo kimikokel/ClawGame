@@ -9,36 +9,41 @@ public class Combine : MonoBehaviour
     public GameObject[] newBall;
     private GameObject newIns;
     private GameObject currentBall;
-    private bool isSpawned;
+    // private bool isSpawned;
 
     // Start is called before the first frame update
     void Start()
     {
         ball = gameObject;
         // next(ball);
-        isSpawned = false;
+        // isSpawned = false;
     }
     //ball = self
     //target = the one i touched
     //currentball = the one i touched
-    void OnCollisionEnter(Collision target) {
-        if (target.gameObject.tag == ball.tag){
+    void OnCollisionEnter(Collision target)
+    {
+        if (target.gameObject.tag == ball.tag)
+        {
             ball.tag = "Dead";
             // spawn();
-            next(target.gameObject.tag);
-            isSpawned = false;
+            Next(target.gameObject.tag);
+            // isSpawned = false;
 
-            if (ball.tag == "Dead") {
+            if (ball.tag == "Dead")
+            {
                 Destroy(ball);
                 Destroy(target.gameObject);
                 newIns = Instantiate(newBall[nextBall], transform.position, transform.rotation);
-                isSpawned = true;
+                // isSpawned = true;
             }
         }
     }
 
-    void next(string current) {
-        switch (current) {
+    void Next(string current)
+    {
+        switch (current)
+        {
             case "Purple":
                 // print("current: " + current);
                 nextBall = 1;
@@ -78,7 +83,7 @@ public class Combine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isSpawned = true;
+        // isSpawned = true;
 
         // print("crball = " + currentBall);
         // print("newins = " + newIns);
