@@ -44,37 +44,45 @@ public class Combine : MonoBehaviour
     {
         switch (current)
         {
-            case "Purple":
+            case "Cherry":
                 // print("current: " + current);
-                nextBall = 1;
+                nextBall = 9;
                 // print("next: " + nextBall);
                 break;
-            case "Red":
+            case "Strawberry":
                 // print("current: " + current);
-                nextBall = 2;
+                nextBall = 8;
                 // print("next: " + nextBall);
+                break;
+            case "Grape":
+                // print("current: " + current);
+                nextBall = 7;
+                // print("next: " + nextBall);
+                break;
+            case "Citrus":
+                // print("current: " + current);
+                nextBall = 6;
                 break;
             case "Orange":
                 // print("current: " + current);
-                nextBall = 3;
-                // print("next: " + nextBall);
-                break;
-            case "Pink":
-                // print("current: " + current);
-                nextBall = 4;
-                break;
-            case "Yellow":
-                // print("current: " + current);
                 nextBall = 5;
                 break;
-            case "Lightgreen":
-                nextBall = 6;
+            case "Apple":
+                nextBall = 4;
                 break;
-            case "Green":
-                nextBall = 7;
+            case "Pear":
+                nextBall = 3;
+                break;
+            case "Peach":
+                nextBall = 2;
+                break;
+            case "Pineapple":
+                nextBall = 1;
+                break;
+            case "Melon":
+                nextBall = 0;
                 break;
             default:
-                // nextBall = 0;
                 print("NOPE");
                 break;
         }

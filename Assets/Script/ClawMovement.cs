@@ -85,15 +85,15 @@ public class ClawMovements : MonoBehaviour {
                 isEmpty = true;
             }
 
-            if ((int)HookHeight.position.y == maxHeight && isEmpty) {
-                // StartCoroutine(spawn(0.2f));
+            if ((int)HookHeight.position.y == maxHeight && isEmpty && clawAnimator.GetCurrentAnimatorStateInfo(0).IsName("close")) {
+                // StartCoroutine(spawn(0.4f));
                 isEmpty = false;
                 newBall = Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
             }
 
             IEnumerator closeClaw() {
                 // yield return new WaitForSeconds(secs); 
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.2f);
                 if (HookHeight.position.y <= maxHeight && !onSpace && HookHeight.position.y > minHeight) {
                     // print("up");
                     transform.Translate(0, (clawSpeed * Time.deltaTime), 0);
@@ -112,10 +112,10 @@ public class ClawMovements : MonoBehaviour {
             //         }
             // }
 
-            // IEnumerator spawn(float secs) {
-            //     yield return new WaitForSeconds(secs);
-            //     isEmpty = false;
-            //     newBall = Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
-            // }
+            IEnumerator spawn(float secs) {
+                yield return new WaitForSeconds(secs);
+                isEmpty = false;
+                newBall = Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
+            }
     }
 }     

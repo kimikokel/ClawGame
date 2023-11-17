@@ -8567,9 +8567,10 @@ MonoBehaviour:
   backLimit: {fileID: 1242683801}
   CanControl: 0
   balls:
+  - {fileID: 1842677249106235685, guid: 6f74247a9317f574ab18c81c801ccb96, type: 3}
   - {fileID: 6765527921007409165, guid: b88cf7fce8d319649b651c6327964ed7, type: 3}
-  - {fileID: 1510732161289074, guid: dbeb405477eddea4db9d05967fa0862a, type: 3}
-  - {fileID: 1842677249106235685, guid: 8c737f45d76d57747a2d86f13fcce6e9, type: 3}
+  - {fileID: 6765527921007409165, guid: b6649645c0bcc8d4889d5ca5fbb32f1f, type: 3}
+  - {fileID: 6765527921007409165, guid: 0e257875e8b0b134d8443c28c26ac4db, type: 3}
   clawPosition: {fileID: 279013885}
 --- !u!114 &1881691592
 MonoBehaviour:
@@ -8584,9 +8585,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balls:
+  - {fileID: 1842677249106235685, guid: 6f74247a9317f574ab18c81c801ccb96, type: 3}
   - {fileID: 6765527921007409165, guid: b88cf7fce8d319649b651c6327964ed7, type: 3}
-  - {fileID: 1510732161289074, guid: dbeb405477eddea4db9d05967fa0862a, type: 3}
-  - {fileID: 1842677249106235685, guid: 8c737f45d76d57747a2d86f13fcce6e9, type: 3}
+  - {fileID: 6765527921007409165, guid: b6649645c0bcc8d4889d5ca5fbb32f1f, type: 3}
+  - {fileID: 6765527921007409165, guid: 0e257875e8b0b134d8443c28c26ac4db, type: 3}
   clawPosition: {fileID: 279013885}
 --- !u!1 &1891326466 stripped
 GameObject:

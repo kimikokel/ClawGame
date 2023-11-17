@@ -5,14 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - ClawBar
-  - Yellow
-  - Lightgreen
-  - Purple
-  - Red
-  - Orange
-  - Green
-  - Pink
   - Dead
+  - Watermelon
+  - Melon
+  - Pineapple
+  - Peach
+  - Pear
+  - Apple
+  - Orange
+  - Citrus
+  - Grape
+  - Strawberry
+  - Cherry
   layers:
   - Default
   - TransparentFX
