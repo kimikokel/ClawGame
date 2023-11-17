@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class ClawMovements : MonoBehaviour {
 
@@ -24,15 +26,12 @@ public class ClawMovements : MonoBehaviour {
     public Transform clawPosition;
     GameObject newBall;
 
-    void Awake(){
-    }
-
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         CanControl = true;
         onSpace = false;
         isEmpty = true;
-        // Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
+        newBall = Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
     }
 
     void Update() {
@@ -101,21 +100,6 @@ public class ClawMovements : MonoBehaviour {
                     yield return new WaitForSeconds(0.1f);
                     clawAnimator.Play("close");
                 }
-            }
-
-            // void closeClaw() {
-            //         if (HookHeight.position.y <= maxHeight && !onSpace && HookHeight.position.y > minHeight) {
-            //             // print("up");
-            //             transform.Translate(0, (clawSpeed * Time.deltaTime), 0);
-            //             CanControl = true;
-            //             clawAnimator.Play("close");
-            //         }
-            // }
-
-            IEnumerator spawn(float secs) {
-                yield return new WaitForSeconds(secs);
-                isEmpty = false;
-                newBall = Instantiate(balls[Random.Range(0,balls.Length)], clawPosition.position, clawPosition.rotation);
             }
     }
 }     
