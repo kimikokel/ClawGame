@@ -124,6 +124,10 @@ public class Combine : MonoBehaviour
                 nextBall = 0;
                 StartGame.score += 100;
                 break;
+            case "Watermelon":
+                nextBall = 10;
+                StartGame.score += 500;
+                break;
             default:
                 print("NOPE");
                 break;

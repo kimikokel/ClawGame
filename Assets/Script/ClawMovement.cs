@@ -29,6 +29,7 @@ public class ClawMovements : MonoBehaviour {
     [SerializeField]
     AudioSource pop;
 
+
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         CanControl = true;
@@ -40,29 +41,62 @@ public class ClawMovements : MonoBehaviour {
     void Update() {
         if (CanControl && !Game.isDead) {
 
-            if (transform.position.x > leftLimit.transform.position.x) {
-                if (Input.GetKey(KeyCode.D)) {
-                    transform.Translate(clawSpeed * -1 * Time.deltaTime, 0, 0);
-                }
+            Vector3 pos = GameObject.Find("Main Camera").transform.position;
+            Vector3 vz = new Vector3(-pos.x, 0, -pos.z);
+            Vector3 vx = Quaternion.AngleAxis(-90, Vector3.up) * vz;
+            vz.Normalize();
+            vx.Normalize();
+            Vector3 offset = Vector3.zero;
+
+            if (Input.GetKey(KeyCode.D)) {
+                // transform.Translate(clawSpeed * -1 * Time.deltaTime, 0, 0);
+                offset += (-vx * clawSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.A)) {
+                // transform.Translate(clawSpeed * Time.deltaTime, 0, 0);
+                offset += (vx * clawSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.S)) {
+                // transform.Translate(0, 0, clawSpeed * Time.deltaTime);
+                offset += (-vz * clawSpeed * Time.deltaTime);        
+            }
+            if (Input.GetKey(KeyCode.W)) {
+                // transform.Translate(0, 0, clawSpeed * -1 * Time.deltaTime);
+                offset += (vz * clawSpeed * Time.deltaTime);
+            }                
+
+
+            Vector3 newPos = transform.position + offset;
+
+            if (newPos.x > leftLimit.transform.position.x &&
+                newPos.x < rightLimit.transform.position.x &&
+                newPos.z < backLimit.transform.position.z &&
+                newPos.z > frontLimit.transform.position.z
+            ) {
+                transform.position = newPos;
             }
 
-            if (transform.position.x < rightLimit.transform.position.x) {
-                if (Input.GetKey(KeyCode.A)) {
-                    transform.Translate(clawSpeed * Time.deltaTime, 0, 0);
-                }
-            }
 
-            if (transform.position.z < backLimit.transform.position.z) {
-                if (Input.GetKey(KeyCode.S)) {
-                    transform.Translate(0, 0, clawSpeed * Time.deltaTime);
-                }
-            }
+            // if (transform.position.x < rightLimit.transform.position.x) {
+            //     if (Input.GetKey(KeyCode.A)) {
+            //         // transform.Translate(clawSpeed * Time.deltaTime, 0, 0);
+            //         transform.position += (vx * clawSpeed * Time.deltaTime);
+            //     }
+            // }
 
-            if (transform.position.z > frontLimit.transform.position.z) {
-                if (Input.GetKey(KeyCode.W)) {
-                    transform.Translate(0, 0, clawSpeed * -1 * Time.deltaTime);
-                }
-            }
+            // if (transform.position.z < backLimit.transform.position.z) {
+            //     if (Input.GetKey(KeyCode.S)) {
+            //         // transform.Translate(0, 0, clawSpeed * Time.deltaTime);
+            //         transform.position += (-vz * clawSpeed * Time.deltaTime);        
+            //     }
+            // }
+
+            // if (transform.position.z > frontLimit.transform.position.z) {
+            //     if (Input.GetKey(KeyCode.W)) {
+            //         // transform.Translate(0, 0, clawSpeed * -1 * Time.deltaTime);
+            //         transform.position += (vz * clawSpeed * Time.deltaTime);
+            //     }
+            // }
 
             if (Input.GetKeyDown(KeyCode.Space) && !Game.isDead) {
                 onSpace = true;
