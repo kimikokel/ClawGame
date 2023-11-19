@@ -26,6 +26,9 @@ public class ClawMovements : MonoBehaviour {
     public Transform clawPosition;
     public GameObject newBall;
 
+    [SerializeField]
+    AudioSource pop;
+
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         CanControl = true;
@@ -64,6 +67,7 @@ public class ClawMovements : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space) && !Game.isDead) {
                 onSpace = true;
                 CanControl = false;
+                pop.Play();
                 // isEmpty = true;
                 // print("space "+ (int)HookHeight.position.y);
             }

@@ -11,6 +11,9 @@ public class Combine : MonoBehaviour
     private GameObject newIns;
     private GameObject currentBall;
 
+    [SerializeField]
+    AudioSource bob;
+
     // void UpdateScoreDisplay()
     // {
     //     if (scoreText != null)
@@ -30,6 +33,7 @@ public class Combine : MonoBehaviour
         // scoreText = GameObject.Find("ScoreUI").GetComponent<TMP_Text>();
         // // scoreDead = GameObject.Find("ScoreDead").GetComponent<TMP_Text>();
         // StartGame.score = int.Parse(scoreText);
+        bob = GameObject.Find("Bob").GetComponent<AudioSource>();
         ball = gameObject;
         // UpdateScoreDisplay();
         // isSpawned = false;
@@ -50,6 +54,7 @@ public class Combine : MonoBehaviour
 
             if (ball.tag == "Dead")
             {
+                bob.Play();
                 Destroy(ball);
                 Destroy(target.gameObject);
                 newIns = Instantiate(newBall[nextBall], transform.position, transform.rotation);

@@ -17,7 +17,7 @@ public class StartGame : MonoBehaviour
     {
         Game.isDead = false;
         score = 0;
-        print("entermain");
+        // print("entermain");
         SceneManager.LoadScene("Main");
     }
 

@@ -5,10 +5,10 @@ using UnityEngine;
 public class OptionMenu : MonoBehaviour
 {
     public GameObject menu;
+
     // Start is called before the first frame update
     void Start()
     {
-        // menu = GameObject.Find("Options");
     }
 
     public void ToggleMenu()

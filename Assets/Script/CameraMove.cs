@@ -19,7 +19,7 @@ public class CameraMove : MonoBehaviour
         speed = 300f;
         // yaw = 0f;
         // pitch = 0f;
-        print("start");
+        // print("start");
         pos = transform.position;
         rX = transform.eulerAngles.x;
         rY = transform.eulerAngles.y;

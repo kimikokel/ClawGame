@@ -21,7 +21,7 @@ public class GameOver : MonoBehaviour
             var testedTag = tagToFind[i];
             if (!collision.CompareTag(testedTag)) continue;
             
-            Debug.Log($"hit {testedTag}");
+            // Debug.Log($"hit {testedTag}");
             EndGame();
             return;
         }
@@ -31,7 +31,7 @@ public class GameOver : MonoBehaviour
     {
         // if (!newBall) {
         Game.isDead = true;
-        print("gg");
+        // print("gg");
         GG.SetActive(true);
         can.SetActive(false);
             // StartGame.score = 0;
@@ -41,9 +41,9 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
-        {
-            EndGame();
-        }
+        // if (Input.GetKey(KeyCode.Q))
+        // {
+        //     EndGame();
+        // }
     }
 }
