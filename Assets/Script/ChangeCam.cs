@@ -5,13 +5,13 @@ using UnityEngine;
 public class ChangeCam : MonoBehaviour
 {
     public Camera front;
-    public Camera back;
+    private Vector3 frontPos;
+    private Vector3 frontAng;
 
-    // [SerializeField] private Button btn = null;
-    // Start is called before the first frame update
     void Start()
     {
-        front.enabled = true;
+        frontPos = front.transform.position;
+        frontAng = front.transform.eulerAngles;
         // back.enabled = false;
     }
 
@@ -22,13 +22,15 @@ public class ChangeCam : MonoBehaviour
 
     public void changeView()
     {
-        if (front.enabled)
-        {
-            front.enabled = false;
-        }
-        else
-        {
-            front.enabled = true;
-        }
+        front.transform.position = frontPos;
+        front.transform.eulerAngles = frontAng;
+        // if (front.enabled)
+        // {
+        //     front.enabled = false;
+        // }
+        // else
+        // {
+        //     front.enabled = true;
+        // }
     }
 }

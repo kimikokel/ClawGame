@@ -16,7 +16,7 @@ public class CameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 200f;
+        speed = 300f;
         // yaw = 0f;
         // pitch = 0f;
         print("start");

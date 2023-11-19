@@ -24,7 +24,7 @@ public class ClawMovements : MonoBehaviour {
 
     public GameObject[] balls;
     public Transform clawPosition;
-    GameObject newBall;
+    public GameObject newBall;
 
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
@@ -35,7 +35,7 @@ public class ClawMovements : MonoBehaviour {
     }
 
     void Update() {
-        if (CanControl) {
+        if (CanControl && !Game.isDead) {
 
             if (transform.position.x > leftLimit.transform.position.x) {
                 if (Input.GetKey(KeyCode.D)) {
@@ -61,7 +61,7 @@ public class ClawMovements : MonoBehaviour {
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space) && !Game.isDead) {
                 onSpace = true;
                 CanControl = false;
                 // isEmpty = true;

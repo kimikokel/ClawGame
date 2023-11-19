@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public GameObject GG;
+    public GameObject can;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -28,14 +29,21 @@ public class GameOver : MonoBehaviour
 
     void EndGame()
     {
+        // if (!newBall) {
+        Game.isDead = true;
         print("gg");
-        SceneManager.LoadScene("Main");
-        StartGame.score = 0;
+        GG.SetActive(true);
+        can.SetActive(false);
+            // StartGame.score = 0;
+        // } ///need fix if condition to end game fruit collide when newly spawn !!!!!!!!!!!!!!!
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Q))
+        {
+            EndGame();
+        }
     }
 }

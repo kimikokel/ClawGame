@@ -10,27 +10,28 @@ public class Combine : MonoBehaviour
     public GameObject[] newBall;
     private GameObject newIns;
     private GameObject currentBall;
-    public TMP_Text scoreText;
 
-    void UpdateScoreDisplay()
-    {
-        if (scoreText != null)
-        {
-            scoreText.text = StartGame.score.ToString();
-            Debug.Log("Updated Score Display. Current Score: " + StartGame.score);
-        }
-        else
-        {
-            Debug.LogError("scoreText is not assigned!");
-        }
-    }
+    // void UpdateScoreDisplay()
+    // {
+    //     if (scoreText != null)
+    //     {
+    //         // scoreText.text = StartGame.score.ToString();
+    //         // // scoreDead.text = StartGame.score.ToString();
+    //         // Debug.Log("Updated Score Display. Current Score: " + StartGame.score);
+    //     }
+    //     else
+    //     {
+    //         // Debug.LogError("scoreText is not assigned!");
+    //     }
+    // }
 
     void Start()
     {
-        scoreText = GameObject.Find("ScoreUI").GetComponent<TMP_Text>();
+        // scoreText = GameObject.Find("ScoreUI").GetComponent<TMP_Text>();
+        // // scoreDead = GameObject.Find("ScoreDead").GetComponent<TMP_Text>();
         // StartGame.score = int.Parse(scoreText);
         ball = gameObject;
-        UpdateScoreDisplay();
+        // UpdateScoreDisplay();
         // isSpawned = false;
     }
     //ball = self
@@ -38,32 +39,33 @@ public class Combine : MonoBehaviour
     //currentball = the one i touched
     void OnCollisionEnter(Collision target)
     {
-        if (target.gameObject.tag == ball.tag)
+        if (target.gameObject.tag == ball.tag && !Game.isDead)
         {
-            StartCoroutine(Spawn());
+            // StartCoroutine(Spawn());
             ball.tag = "Dead";
             // spawn();
-            Next(target.gameObject.tag);
+            if (!Game.isDead)
+                Next(target.gameObject.tag);
             // isSpawned = false;
 
             if (ball.tag == "Dead")
             {
                 Destroy(ball);
                 Destroy(target.gameObject);
-                // newIns = Instantiate(newBall[nextBall], transform.position, transform.rotation);
-                UpdateScoreDisplay();
+                newIns = Instantiate(newBall[nextBall], transform.position, transform.rotation);
+                // UpdateScoreDisplay();
                 // StartCoroutine(Spawn());
                 // isSpawned = true;
             }
         }
     }
 
-    IEnumerator Spawn() {
-        print("FUCKUFRONT");
-        yield return new WaitForSeconds(5f);
-        print("FUCKUBACk");
-        // newIns = Instantiate(newBall[nextBall], transform.position, transform.rotation);
-    }
+    // IEnumerator Spawn() {
+    //     print("FUCKUFRONT");
+    //     yield return new WaitForSeconds(5f);
+    //     print("FUCKUBACk");
+    //     // newIns = Instantiate(newBall[nextBall], transform.position, transform.rotation);
+    // }
 
     void Next(string current)
     {

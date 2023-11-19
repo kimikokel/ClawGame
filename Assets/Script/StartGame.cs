@@ -10,11 +10,14 @@ public class StartGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // score = 0;
     }
 
     public void enterMain()
     {
+        Game.isDead = false;
+        score = 0;
+        print("entermain");
         SceneManager.LoadScene("Main");
     }
 

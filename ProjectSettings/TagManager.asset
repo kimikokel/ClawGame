@@ -17,6 +17,7 @@ TagManager:
   - Grape
   - Strawberry
   - Cherry
+  - Score
   layers:
   - Default
   - TransparentFX
